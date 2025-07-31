@@ -12,7 +12,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/VishnuKRajan007/KubeBridge.git'
+                git branch: 'main', url: 'https://github.com/VishnuKRajan007/KubeBridge.git'
             }
         }
 
