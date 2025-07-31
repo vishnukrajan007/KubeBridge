@@ -10,7 +10,7 @@
     <packaging>jar</packaging>
 
     <name>KubeBridge</name>
-    <description>Java Spring Boot app integrated with AWS DynamoDB</description>
+    <description>Java Spring Boot app that integrated with AWS DynamoDB</description>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
