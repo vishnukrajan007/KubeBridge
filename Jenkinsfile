@@ -3,7 +3,6 @@ pipeline {
 
     environment {
         DOCKER_IMAGE = 'vishnukrajan007/flaskapp'
-        IMAGE_TAG = 'latest'
         KUBE_NAMESPACE = 'default'
     }
 
@@ -13,8 +12,12 @@ pipeline {
                 git(
                     url: 'https://github.com/vishnukrajan007/KubeBridge.git',
                     credentialsId: 'git-creds',
-                    branch: 'main' // or 'master' if that's your default branch
+                    branch: 'main'
                 )
+                script {
+                    IMAGE_TAG = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
+                    env.IMAGE_TAG = IMAGE_TAG
+                }
             }
         }
 
@@ -22,8 +25,12 @@ pipeline {
             steps {
                 script {
                     sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_HUB_USERNAME', passwordVariable: 'DOCKER_HUB_PASSWORD')]) {
-                        sh "echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USERNAME --password-stdin"
+                    withCredentials([usernamePassword(
+                        credentialsId: 'docker-hub-creds',
+                        usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR',
+                        passwordVariable: 'DOCKER_HUB_CREDENTIALS_PSW'
+                    )]) {
+                        sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
                         sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
                     }
                 }
@@ -32,20 +39,20 @@ pipeline {
 
         stage('Deploy to Kubernetes') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'aws-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
-                    script {
-                        sh '''
+                withCredentials([usernamePassword(
+                    credentialsId: 'aws-credentials',
+                    usernameVariable: 'AWS_ACCESS_KEY_ID',
+                    passwordVariable: 'AWS_SECRET_ACCESS_KEY'
+                )]) {
+                    sh '''
                         export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
                         export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
                         export AWS_DEFAULT_REGION=ap-south-1
 
-                        # Update kubeconfig
                         aws eks update-kubeconfig --name vkr-cluster --region ap-south-1
 
-                        # Update deployment with new image
                         kubectl set image deployment/flaskapp flaskapp=${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
-                        '''
-                    }
+                    '''
                 }
             }
         }
@@ -53,10 +60,7 @@ pipeline {
 
     post {
         failure {
-            echo '❌ Build or deployment failed!'
-        }
-        success {
-            echo '✅ Build and deployment successful!'
+            echo 'Build or deployment failed!'
         }
     }
 }
