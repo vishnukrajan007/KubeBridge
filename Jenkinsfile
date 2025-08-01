@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/your-flask-repo.git'
+                git 'https://github.com/vishnukrajan007/KubeBridge.git'
             }
         }
 
