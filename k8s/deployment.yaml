@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: kubebridge
+  name: flaskapp
   labels:
-    app: kubebridge
+    app: flaskapp
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: kubebridge
+      app: flaskapp
   template:
     metadata:
       labels:
-        app: kubebridge
+        app: flaskapp
     spec:
       containers:
-        - name: kubebridge
-          image: vishnukrajan007/kubebridge:latest  # Updated via Jenkins
+        - name: flaskapp
+          image: vishnukrajan007/flaskapp:latest  # Updated via Jenkins
           ports:
             - containerPort: 8080
           imagePullPolicy: Always

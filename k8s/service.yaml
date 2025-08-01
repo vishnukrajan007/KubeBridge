@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: kubebridge-service
+  name: flaskapp-service
 spec:
   selector:
-    app: kubebridge
+    app: flaskapp
   ports:
     - protocol: TCP
       port: 80

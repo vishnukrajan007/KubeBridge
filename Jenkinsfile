@@ -4,7 +4,7 @@ pipeline {
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('docker-hub-creds')  // Jenkins creds ID for Docker Hub
         AWS_CREDENTIALS = credentials('aws-credentials')          // Jenkins creds ID for AWS (access key + secret)
-        DOCKER_IMAGE = "vishnukrajan007/kubebridge"
+        DOCKER_IMAGE = "vishnukrajan007/Flaskapp"
         IMAGE_TAG = "${env.BUILD_NUMBER}"
         KUBE_NAMESPACE = "default"
     }
@@ -44,7 +44,7 @@ pipeline {
                     aws eks update-kubeconfig --name vkr-cluster --region ap-south-1
 
                     # Deploy by setting new image
-                    kubectl set image deployment/kubebridge kubebridge=${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
+                    kubectl set image deployment/Flaskapp Flaskapp =${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
                     '''
                 }
             }
