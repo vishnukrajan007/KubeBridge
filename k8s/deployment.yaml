@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: flaskapp
-          image: vishnukrajan007/flaskapp:latest  # Updated via Jenkins
+          image: vishnukrajan007/flaskapp  # Updated via Jenkins
           ports:
             - containerPort: 5000
           imagePullPolicy: Always
