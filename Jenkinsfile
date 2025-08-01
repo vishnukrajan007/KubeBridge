@@ -7,22 +7,32 @@ pipeline {
         KUBE_NAMESPACE = 'default'  // Change if your namespace is different
     }
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/vishnukrajan007/KubeBridge.git'
-            }
-        }
+    stage('Checkout') {
+    steps {
+        git(
+            url: 'https://github.com/vishnukrajan007/KubeBridge.git',
+            credentialsId: 'git-creds',
+            branch: 'main' // or the correct branch name
+        )
+    }
+}
 
-        stage('Docker Build & Push') {
-            steps {
-                script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
-                    sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
-                    sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
-                }
+
+       stage('Docker Build & Push') {
+    steps {
+        script {
+            sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
+            
+            withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', 
+                                             usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR', 
+                                             passwordVariable: 'DOCKER_HUB_CREDENTIALS_PSW')]) {
+                sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
             }
         }
+    }
+}
+
 
         stage('Deploy to Kubernetes') {
             steps {
