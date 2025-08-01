@@ -150,4 +150,41 @@ branch 'main' set up to track 'origin/main'.
 [1;43r[40;9H}[?25l[?12l[?25h7[2;41r8[41d
 [1;43r[40;5H}[?25l[?12l[?25h7[2;41r8[41d
 [1;43r[40;1H}[?25l[?12l[?25h7[2;41r8[41d
-[1;43r[40;1H[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: Jenkinsfile                                                                                                        [41;32H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;77H(B[0;7m [134G(B[m[41;59H(B[0;7m[ Wrote 59 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[40d[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31
+[1;43r[40;1H[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: Jenkinsfile                                                                                                        [41;32H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;77H(B[0;7m [134G(B[m[41;59H(B[0;7m[ Wrote 59 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[40d[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# lscleargit push -u origin maincommit -m "new jenkinsfie"add .[K
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# git add .ls[Kcleargit push -u origin maincommit -m "new jenkinsfie" "c"r"e"d"
+[?2004l[main c27bbbc] new jenkinsfie cred
+ Committer: root <root@ip-172-31-2-231.ap-south-1.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 101 insertions(+), 14 deletions(-)
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# git commit -m "new jenkinsfie cred"add .[Kls[Kcleargit push -u origin main
+[?2004lUsername for 'https://github.com': VishnuKRajan007
+Password for 'https://VishnuKRajan007@github.com': 
+remote: Invalid username or token. Password authentication is not supported for Git operations.
+fatal: Authentication failed for 'https://github.com/vishnukrajan007/KubeBridge.git/'
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# git push -u origin main
+[?2004lUsername for 'https://github.com': VishnuKRajan007
+Password for 'https://VishnuKRajan007@github.com': 
+Enumerating objects: 7, done.
+Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects:  25% (1/4)Compressing objects:  50% (2/4)Compressing objects:  75% (3/4)Compressing objects: 100% (4/4)Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)Writing objects:  50% (2/4)Writing objects:  75% (3/4)Writing objects: 100% (4/4)Writing objects: 100% (4/4), 5.55 KiB | 5.55 MiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/2)[Kremote: Resolving deltas:  50% (1/2)[Kremote: Resolving deltas: 100% (2/2)[Kremote: Resolving deltas: 100% (2/2), completed with 2 local objects.[K
+To https://github.com/vishnukrajan007/KubeBridge.git
+   9c2a995..c27bbbc  main -> main
+branch 'main' set up to track 'origin/main'.
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# rm Jenkinsfile
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# nano Jenkinsfile
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;62H(B[0;7m[ New File ](B[m[H(B[0;7m  GNU nano 7.2                                                  Jenkinsfile                                                            [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d[?12l[?25h[?25l[41d[K[1;77H(B[0;7m*[134G(B[m[2;25Hexport AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}[3;25Hexport AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}[4;25Hexport AWS_DEFAULT_REGION=ap-south-1[6;25Haws eks update-kubeconfig --
