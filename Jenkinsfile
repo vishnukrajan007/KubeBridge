@@ -41,7 +41,7 @@ pipeline {
                     export AWS_DEFAULT_REGION=ap-south-1
 
                     # Update kubeconfig for EKS
-                    aws eks update-kubeconfig --name vkr --region ap-south-1
+                    aws eks update-kubeconfig --name vkr-cluster --region ap-south-1
 
                     # Deploy by setting new image
                     kubectl set image deployment/kubebridge kubebridge=${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
