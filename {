@@ -187,4 +187,239 @@ To https://github.com/vishnukrajan007/KubeBridge.git
 branch 'main' set up to track 'origin/main'.
 [?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# rm Jenkinsfile
 [?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# nano Jenkinsfile
-[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;62H(B[0;7m[ New File ](B[m[H(B[0;7m  GNU nano 7.2                                                  Jenkinsfile                                                            [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d[?12l[?25h[?25l[41d[K[1;77H(B[0;7m*[134G(B[m[2;25Hexport AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}[3;25Hexport AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}[4;25Hexport AWS_DEFAULT_REGION=ap-south-1[6;25Haws eks update-kubeconfig --
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;62H(B[0;7m[ New File ](B[m[H(B[0;7m  GNU nano 7.2                                                  Jenkinsfile                                                            [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d[?12l[?25h[?25l[41d[K[1;77H(B[0;7m*[134G(B[m[2;25Hexport AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}[3;25Hexport AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}[4;25Hexport AWS_DEFAULT_REGION=ap-south-1[6;25Haws eks update-kubeconfig --name vkr-cluster --region ap-south-1[8;25Hkubectl set image deployment/flaskapp flaskapp=${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}[9;21H'''[10;17H}[11;13H}[12;9H}[13;5H}[15dpost {[16dfailure {[17;13Hecho 'Build or deployment failed!'[18;9H}[19;5H}[20d}[21d[?12l[?25h[?25l[?12l[?25h[18d[?25l[?12l[?25h[15d[?25l[?12l[?25h[12d[?25l[?12l[?25h[9d[?25l[?12l[?25h[6d[?25l[?12l[?25h[3d[?25l[?12l[?25h[2;41r[2;1H[2T[1;43r[2;17HwithCredentials([usernamePassword(credentialsId: 'aws-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVar(B[0;7m>[3;21H(B[msh '''[A[?25l[?12l[?25h7[2;41r8[3T[1;43r[3;9Hstage('Deploy to Kubernetes') {[4;13Hsteps {[2d[?25l[?12l[?25h7[2;41r8[3T[1;43r[2;17H}[3;13H}[4;9H}[2d[?25l[?12l[?25h7[2;41r8[3T[1;43r[2;25Hsh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"[3;25Hsh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"[4;21H}[2d[?25l[?12l[?25h7[2;41r8[3T[1;43r[2;17Hscript {[3;21Hsh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."[4;21HwithCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR(B[0;7m>[2;1H(B[m[?25l[?12l[?25h7[2;41r8[3T[1;43r[3;9Hstage('Docker Build & Push') {[4;13Hsteps {[2d[?25l[?12l[?25h7[2;41r8[3T[1;43r[2;17H)[3;13H}[4;9H}[2d[?25l[?12l[?25h7[2;40r8[3T[1;43r[2;21Hurl: '(B[0;1m[34mhttps://github.com/vishnukrajan007/KubeBridge.git'[39m(B[m,[3;21HcredentialsId: 'git-creds',[4;21Hbranch: 'main'  // adjust if your default branch is different[2d[?25l[?12l[?25h7[2;40r8[3T[1;43r[2;9Hstage('Checkout') {[3;13Hsteps {[4;17Hgit([2d[?25l[?12l[?25h7[2;40r8[3T[1;43r[2;5H}[4dstages {[2d[?25l[?12l[?25h7[2;40r8[3T[1;43r[2;9HDOCKER_IMAGE = 'vishnukrajan007/flaskapp'[3;9HIMAGE_TAG = 'latest'[4;9HKUBE_NAMESPACE = 'default'[2d[?25l[?12l[?25h7[2;40r8[3T[1;43r[2;5Hagent any[4;5Henvironment {[2d[?25l[?12l[?25h7[2;41r8M[1;43r[2;1Hpipeline {[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[?12l[?25h[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: Jenkinsfile                                                                                                        [41;32H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;77H(B[0;7m [134G(B[m[41;59H(B[0;7m[ Wrote 55 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[2d[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# nano Jenkinsfile[2Prm[C[C[C[C[C[C[C[C[C[C[C[Cgit push -u origin maincommit -m "new jenkinsfie cred"add .[K
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# git add .nano Jenkinsfile[2Prm[C[C[C[C[C[C[C[C[C[C[C[Cgit push -u origin maincommit -m "new jenkinsfie cred"s"s"
+[?2004l[main 703358c] new jenkinsfie credss
+ Committer: root <root@ip-172-31-2-231.ap-south-1.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 58 insertions(+), 25 deletions(-)
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# git commit -m "new jenkinsfie credss"add .[Knano Jenkinsfile[2Prm[C[C[C[C[C[C[C[C[C[C[C[Cgit push -u origin main
+[?2004lUsername for 'https://github.com': VishnuKRajan007
+Password for 'https://VishnuKRajan007@github.com': 
+Enumerating objects: 7, done.
+Counting objects:  14% (1/7)Counting objects:  28% (2/7)Counting objects:  42% (3/7)Counting objects:  57% (4/7)Counting objects:  71% (5/7)Counting objects:  85% (6/7)Counting objects: 100% (7/7)Counting objects: 100% (7/7), done.
+Delta compression using up to 2 threads
+Compressing objects:  25% (1/4)Compressing objects:  50% (2/4)Compressing objects:  75% (3/4)Compressing objects: 100% (4/4)Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)Writing objects:  50% (2/4)Writing objects:  75% (3/4)Writing objects: 100% (4/4)Writing objects: 100% (4/4), 864 bytes | 864.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas:   0% (0/3)[Kremote: Resolving deltas:  33% (1/3)[Kremote: Resolving deltas:  66% (2/3)[Kremote: Resolving deltas: 100% (3/3)[Kremote: Resolving deltas: 100% (3/3), completed with 3 local objects.[K
+To https://github.com/vishnukrajan007/KubeBridge.git
+   c27bbbc..703358c  main -> main
+branch 'main' set up to track 'origin/main'.
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# kubectl get svc
+[?2004lNAME                 TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)        AGE
+flaskapp-service     LoadBalancer   172.20.238.126   a96fd0c87246a4a6f976385e765474ca-1301782894.ap-south-1.elb.amazonaws.com   80:32279/TCP   33m
+kubebridge-service   LoadBalancer   172.20.236.200   a53134f317a15419f803d5fdb09722fa-1560696456.ap-south-1.elb.amazonaws.com   80:31733/TCP   22h
+kubernetes           ClusterIP      172.20.0.1       <none>                                                                     443/TCP        22h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# kubectl delte [C[1@e[C[C[Cservice [7mkubebridge-service[27mkubebridge-service
+[?2004lservice "kubebridge-service" deleted
+
+
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# 
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# 
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# kubectl get pods
+[?2004lNAME                          READY   STATUS    RESTARTS   AGE
+flaskapp-6b99855f9-hgwjc      1/1     Running   0          39m
+flaskapp-6b99855f9-npvv7      1/1     Running   0          39m
+kubebridge-6cb5795499-lcqcl   1/1     Running   0          36m
+kubebridge-6cb5795499-ljx4m   1/1     Running   0          36m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# kubectl get node
+[?2004lNAME                                        STATUS   ROLES    AGE   VERSION
+ip-10-0-0-104.ap-south-1.compute.internal   Ready    <none>   22h   v1.33.0-eks-802817d
+ip-10-0-0-233.ap-south-1.compute.internal   Ready    <none>   22h   v1.33.0-eks-802817d
+ip-10-0-1-63.ap-south-1.compute.internal    Ready    <none>   22h   v1.33.0-eks-802817d
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# kubectl get nodepodsdelete service kubebridge-serviceget svc[K
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.238.126   a96fd0c87246a4a6f976385e765474ca-1301782894.ap-south-1.elb.amazonaws.com   80:32279/TCP   39m
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                     443/TCP        22h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ls
+[?2004l Dockerfile   Jenkinsfile   app.py   [0m[01;34mk8s[0m   kubectl   [01;34mterraform[0m  '{'
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# cd k8s
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ls
+[?2004ldeployment.yaml  ingress.yaml  service.yaml
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# cd [K[K[Kcat [7mdeployment.yaml[27mdeployment.yaml
+[?2004lapiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flaskapp
+  labels:
+    app: flaskapp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: flaskapp
+  template:
+    metadata:
+      labels:
+        app: flaskapp
+    spec:
+      containers:
+        - name: flaskapp
+          image: vishnukrajan007/flaskapp:latest  # Updated via Jenkins
+          ports:
+            - containerPort: 8080
+          imagePullPolicy: Always
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# cat [7mingress.yaml[27mingress.yaml
+[?2004lapiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: flaskapp-ingress
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: flaskapp-service
+                port:
+                  number: 80
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# cat ingress.yaml[K[K[K[K[K[K[K[K[K[K[K[K[7mservice.yaml[27mservice.yaml
+[?2004lapiVersion: v1
+kind: Service
+metadata:
+  name: flaskapp-service
+spec:
+  selector:
+    app: flaskapp
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: LoadBalancer
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# [7mkubectl port-forward svc/flaskapp-service 8080:80[27m
+[7mcurl http://localhost:8080/[27m
+[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ckubectl port-forward svc/flaskapp-service 8080:80
+curl http://localhost:8080/
+[A
+[?2004lUnable to listen on port 8080: Listeners failed to create with the following errors: [unable to create listener: Error listen tcp4 127.0.0.1:8080: bind: address already in use unable to create listener: Error listen tcp6 [::1]:8080: bind: address already in use]
+error: unable to listen on any of the requested ports: [{8080 8080}]
+<html><head><meta http-equiv='refresh' content='1;url=/login?from=%2F'/><script id='redirect' data-redirect-url='/login?from=%2F' src='/static/fb0a5a66/scripts/redirect.js'></script></head><body style='background-color:white; color:white;'>
+Authentication required
+<!--
+-->
+
+</body></html>                                                                                                                                                                                                                                                                                                            [?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# 
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clear
+[?2004l[H[2J[3J[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get pods
+[?2004lNAME                          READY   STATUS    RESTARTS   AGE
+flaskapp-6b99855f9-hgwjc      1/1     Running   0          47m
+flaskapp-6b99855f9-npvv7      1/1     Running   0          47m
+kubebridge-6cb5795499-lcqcl   1/1     Running   0          44m
+kubebridge-6cb5795499-ljx4m   1/1     Running   0          44m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# [7mkubectl delete deployment kubebridge[27m
+[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ckubectl delete deployment kubebridge
+[A
+[?2004ldeployment.apps "kubebridge" deleted
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl delete deployment kubebridgeget pods[K
+[?2004lNAME                       READY   STATUS    RESTARTS   AGE
+flaskapp-6b99855f9-hgwjc   1/1     Running   0          47m
+flaskapp-6b99855f9-npvv7   1/1     Running   0          47m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get ingress
+[?2004lNAME                 CLASS    HOSTS   ADDRESS   PORTS   AGE
+flaskapp-ingress     <none>   *                 80      48m
+kubebridge-ingress   <none>   *                 80      22h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get ingress[1P ingress[1P ingress[1P ingressd ingresse ingressl ingresse ingresst ingresse ingress[C ingress[1Pingress[7mkubebridge-ingress[27m ingress[1@kubebridge-ingress [C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K kubebridge-ingressikubebridge-ingressnkubebridge-ingressgkubebridge-ingressrkubebridge-ingressekubebridge-ingressskubebridge-ingressskubebridge-ingress kubebridge-ingress
+[?2004lingress.networking.k8s.io "kubebridge-ingress" deleted
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl delete ingress kubebridge-ingress[22Pget ingress
+[?2004lNAME               CLASS    HOSTS   ADDRESS   PORTS   AGE
+flaskapp-ingress   <none>   *                 80      49m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get ingress[K[K[K[K[K[K[Ksvc
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                                PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.238.126   a96fd0c87246a4a6f976385e765474ca-1301782894.ap-south-1.elb.amazonaws.com   80:32279/TCP   49m
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                     443/TCP        23h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# [7mkubectl delete service flaskapp-service[27m
+[7mkubectl apply -f service.yaml[27m
+[A[A[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[Ckubectl delete service flaskapp-service
+kubectl apply -f service.yaml
+[A
+[?2004lservice "flaskapp-service" deleted
+
+service/flaskapp-service created
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# 
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl apply -f service.yamldelete service flaskapp-serviceget svc[K
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.130.181   ac5a4eeaa3fdc49b0887c06b09ccacf2-431284941.ap-south-1.elb.amazonaws.com   80:31813/TCP   28s
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                    443/TCP        23h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clear
+[?2004l[H[2J[3J[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clearkubectl get svc
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.130.181   ac5a4eeaa3fdc49b0887c06b09ccacf2-431284941.ap-south-1.elb.amazonaws.com   80:31813/TCP   89s
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                    443/TCP        23h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get pods
+[?2004lNAME                       READY   STATUS    RESTARTS   AGE
+flaskapp-6b99855f9-hgwjc   1/1     Running   0          52m
+flaskapp-6b99855f9-npvv7   1/1     Running   0          52m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get logs [7mflaskapp-6b99855f9-hgwjc[27mflaskapp-6b99855f9-hgwjc
+[?2004lerror: the server doesn't have a resource type "logs"
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get logs flaskapp-6b99855f9-hgwjc[1P flaskapp-6b99855f9-hgwjc[C flaskapp-6b99855f9-hgwjc[1Pflaskapp-6b99855f9-hgwjc
+[?2004lerror: the server doesn't have a resource type "log"
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get log flaskapp-6b99855f9-hgwjc[1P[1P[1P[C[C[C[Cs flaskapp-6b99855f9-hgwjc
+[?2004l * Serving Flask app 'app'
+ * Debug mode: off
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://10.0.1.23:5000
+[33mPress CTRL+C to quit[0m
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl  logs flaskapp-6b99855f9-hgwjc[2@get log[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[Kls
+[?2004ldeployment.yaml  ingress.yaml  service.yaml
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clear
+[?2004l[H[2J[3J[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ls
+[?2004ldeployment.yaml  ingress.yaml  service.yaml
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# nano [7mdeployment.yaml[27mdeployment.yaml
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;61H(B[0;7m[ Reading... ](B[m[41;60H(B[0;7m[ Read 22 lines ](B[m[H(B[0;7m  GNU nano 7.2                                                deployment.yaml                                                          [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d(B[0;1m[32mapiVersion(B[0m: (B[mapps/v1[3d(B[0;1m[32mkind(B[0m: (B[mDeployment[4d(B[0;1m[32mmetadata(B[0m:[5;3H(B[0;1m[32mname(B[0m: (B[mflaskapp[6;3H(B[0;1m[32mlabels(B[0m:[7;5H(B[0;1m[32mapp(B[0m: (B[mflaskapp[8d(B[0;1m[32mspec(B[0m:[9;3H(B[0;1m[32mreplicas(B[0m: (B[0;1m[35m2[10;3H[32mselector(B[0m:[11;5H(B[0;1m[32mmatchLabels(B[0m:[12;7H(B[0;1m[32mapp(B[0m: (B[mflaskapp[13;3H(B[0;1m[32mtemplate(B[0m:[14;5H(B[0;1m[32mmetadata(B[0m:[15;7H(B[0;1m[32mlabels(B[0m:[16;9H(B[0;1m[32mapp(B[0m: (B[mflaskapp[17;5H(B[0;1m[32mspec(B[0m:[18;7H(B[0;1m[32mcontainers(B[0m:[19;8H(B[0;1m[33m[1K - [32mname(B[0m: (B[mflaskapp[20;11H(B[0;1m[32mimage(B[0m: (B[mvishnukrajan007/flaskapp:latest (B[0m[3m[36m # Updated via Jenkins[21;11H(B[0;1m[23m[32mports(B[0m:[22;12H(B[0;1m[33m[1K - [32mcontainerPort(B[0m: (B[0;1m[35m8080[23;11H[32mimagePullPolicy(B[0m: (B[mAlways[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[8d[?25l[?12l[?25h[9d[?25l[?12l[?25h[10d[?25l[?12l[?25h[11d[?25l[?12l[?25h[12d[?25l[?12l[?25h[13d[?25l[?12l[?25h[14d[?25l[?12l[?25h[15d[?25l[?12l[?25h[16d[?25l[?12l[?25h[17d[?25l[?12l[?25h[18d[?25l[?12l[?25h[19d[?25l[?12l[?25h[20d[?25l[?12l[?25h[21d[?25l[41d[K[?12l[?25h[22d[?25l[?12l[?25h[23d[?25l[?12l[?25h[24d[?25l[?12l[?25h[A[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[12G[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25hA[?25l[?12l[?25hl[?25l[?12l[?25hw[?25l[?12l[?25ha[?25l[?12l[?25hy[?25l[?12l[?25hs[?25l[?12l[?25h[24d[?25l[?12l[?25h[A[?25l[?12l[?25h[A[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[15G[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[24G[?25l[?12l[?25h[C[?25l[?12l[?25h[27G[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[1;79H(B[0;7m*[134G(B[m[?12l[?25h[22;33H [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[41m [49m(B[m[K[?25l[?12l[?25h (B[0;1m[35m5[39m(B[m[?25l[?12l[?25h[41m [49m(B[m[K[?25l[?12l[?25h [?25l[?12l[?25h[22;15HcontainerPort:5[?25l[?12l[?25h[22;15H(B[0;1m[32mcontainerPort[C[39m(B[m[K[?25l[?12l[?25h[41m [49m(B[m[?25l[?12l[?25h (B[0;1m[35m5[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: deployment.yaml                                                                                                    [41;36H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;79H(B[0;7m [134G(B[m[41;59H(B[0;7m[ Wrote 22 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[22;34H[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# nano deployment.yamlls[Kclear[3Plsclear[3Plsnano deployment.yaml[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7mingress.yaml[27mingress.yaml
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;61H(B[0;7m[ Reading... ](B[m[41;60H(B[0;7m[ Read 17 lines ](B[m[H(B[0;7m  GNU nano 7.2                                                  ingress.yaml                                                           [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d(B[0;1m[32mapiVersion(B[0m: (B[mnetworking.k8s.io/v1[3d(B[0;1m[32mkind(B[0m: (B[mIngress[4d(B[0;1m[32mmetadata(B[0m:[5;3H(B[0;1m[32mname(B[0m: (B[mflaskapp-ingress[6;3H(B[0;1m[32mannotations(B[0m:[7;5H(B[0;1m[32mnginx.ingress.kubernetes.io/rewrite-target(B[0m: (B[m/[8d(B[0;1m[32mspec(B[0m:[9;3H(B[0;1m[32mrules(B[0m:[10d(B[0;1m[33m    - [32mhttp(B[0m:[11;9H(B[0;1m[32mpaths(B[0m:[12;10H(B[0;1m[33m[1K - [32mpath(B[0m: (B[m/[13;13H(B[0;1m[32mpathType(B[0m: (B[mPrefix[14;13H(B[0;1m[32mbackend(B[0m:[15;15H(B[0;1m[32mservice(B[0m:[16;17H(B[0;1m[32mname(B[0m: (B[mflaskapp-service[17;17H(B[0;1m[32mport(B[0m:[18;19H(B[0;1m[32mnumber(B[0m: (B[0;1m[35m80[2d[39m(B[m[?12l[?25h[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: ingress.yaml                                                                                                       [41;33H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;134H[41;59H(B[0;7m[ Wrote 17 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[2d[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# nano ingress.yaml[K[K[K[K[K[K[K[K[K[K[K[K[7mservice.yaml[27mservice.yaml
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;61H(B[0;7m[ Reading... ](B[m[41;60H(B[0;7m[ Read 12 lines ](B[m[H(B[0;7m  GNU nano 7.2                                                  service.yaml                                                           [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d(B[0;1m[32mapiVersion(B[0m: (B[mv1[3d(B[0;1m[32mkind(B[0m: (B[mService[4d(B[0;1m[32mmetadata(B[0m:[5;3H(B[0;1m[32mname(B[0m: (B[mflaskapp-service[6d(B[0;1m[32mspec(B[0m:[7;3H(B[0;1m[32mselector(B[0m:[8;5H(B[0;1m[32mapp(B[0m: (B[mflaskapp[9;3H(B[0;1m[32mports(B[0m:[10d(B[0;1m[33m    - [32mprotocol(B[0m: (B[mTCP[11;7H(B[0;1m[32mport(B[0m: (B[0;1m[35m80[12;7H[32mtargetPort(B[0m: (B[0;1m[35m8080[13;3H[32mtype(B[0m: (B[mLoadBalancer[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[7d[?25l[?12l[?25h[8d[?25l[?12l[?25h[9d[?25l[?12l[?25h[10d[?25l[?12l[?25h[11d[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[41d[K[?12l[?25h[11;12H[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[12d[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[13d[?25l[?12l[?25h[12;23H[?25l[1;78H(B[0;7m*[134G(B[m[?12l[?25h[12;22H [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[41m [49m(B[m[K[?25l[?12l[?25h (B[0;1m[35m5[39m(B[m[?25l[?12l[?25h[41m [49m(B[m[K[?25l[?12l[?25h [?25l[?12l[?25h[7GtargetPort:5[?25l[?12l[?25h[7G(B[0;1m[32mtargetPort[C[39m(B[m[K[?25l[?12l[?25h[41m [49m(B[m[?25l[?12l[?25h (B[0;1m[35m5[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[?12l[?25h(B[0;1m[35m0[39m(B[m[?25l[42;17H[17X[42;34H(B[0;7mM-D(B[m DOS Format       [42;65H  (B[0;7mM-A(B[m Append[23X[42;100H(B[0;7mM-B(B[m Backup File[K[43;2H(B[0;7mC(B[m Cancel[17G[17X[43;34H(B[0;7mM-M(B[m Mac Format         [43;65H  (B[0;7mM-P(B[m Prepend[22X[43;100H(B[0;7m^T(B[m Browse[K[41d(B[0;7mFile Name to Write: service.yaml                                                                                                       [41;33H(B[m[?12l[?25h[?25l[41;60H[1K (B[0;7m[ Writing... ](B[m[K[1;78H(B[0;7m [134G(B[m[41;59H(B[0;7m[ Wrote 12 lines ](B[m[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute      (B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo        (B[0;7mM-A(B[m Set Mark[43;2H(B[0;7mX(B[m Exit  [17G(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace      (B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify      (B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo        (B[0;7mM-6(B[m Copy[?12l[?25h[12;23H[?25l[41d[J[43d[?12l[?25h[43;1H[?1049l[23;0;0t[?1l>[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl apply -f [7mdeployment.yaml[27mdeployment.yaml
+[?2004ldeployment.apps/flaskapp configured
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl apply -f deployment.yaml[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7mingress.yaml[27mingress.yaml
+[?2004lingress.networking.k8s.io/flaskapp-ingress unchanged
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl apply -f ingress.yamldeployment.yaml[15Pnano service.yamlingress.yamlservice.yamlingress.yamlservice.yamlkubectl apply -f deployment.yaml[K[K[K[K[K[K[K[K[K[K[K[K[K[K[K[7mservice.yaml[27mservice.yaml
+[?2004lservice/flaskapp-service configured
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# kubectl get svc
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.130.181   ac5a4eeaa3fdc49b0887c06b09ccacf2-431284941.ap-south-1.elb.amazonaws.com   80:31813/TCP   5m33s
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                    443/TCP        23h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clear
+[?2004l[H[2J[3J[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# clearkubectl get svc
+[?2004lNAME               TYPE           CLUSTER-IP       EXTERNAL-IP                                                               PORT(S)        AGE
+flaskapp-service   LoadBalancer   172.20.130.181   ac5a4eeaa3fdc49b0887c06b09ccacf2-431284941.ap-south-1.elb.amazonaws.com   80:31813/TCP   7m11s
+kubernetes         ClusterIP      172.20.0.1       <none>                                                                    443/TCP        23h
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# ^C[?2004l[?2004h[?2004l
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridge/k8sroot@ip-172-31-2-231:/home/ubuntu/KubeBridge/k8s# cd ..
+[?2004l[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# ls
+[?2004l Dockerfile   Jenkinsfile   app.py   [0m[01;34mk8s[0m   kubectl   [01;34mterraform[0m  '{'
+[?2004h]0;root@ip-172-31-2-231: /home/ubuntu/KubeBridgeroot@ip-172-31-2-231:/home/ubuntu/KubeBridge# nano app.py
+[?2004l[?2004h[?1049h[22;0;0t[1;43r(B[m[4l[?7h[39;49m[?1h=[?1h=[?25l[39;49m(B[m[H[2J[41;61H(B[0;7m[ Reading... ](B[m[41;60H(B[0;7m[ Read 10 lines ](B[m[H(B[0;7m  GNU nano 7.2                                                     app.py                                                              [1;134H(B[m[42d(B[0;7m^G(B[m Help[42;17H(B[0;7m^O(B[m Write Out    (B[0;7m^W(B[m Where Is     (B[0;7m^K(B[m Cut[42;65H(B[0;7m^T(B[m Execute[81G(B[0;7m^C(B[m Location     (B[0;7mM-U(B[m Undo[42;113H(B[0;7mM-A(B[m Set Mark[43d(B[0;7m^X(B[m Exit[43;17H(B[0;7m^R(B[m Read File    (B[0;7m^\(B[m Replace[49G(B[0;7m^U(B[m Paste[43;65H(B[0;7m^J(B[m Justify[81G(B[0;7m^/(B[m Go To Line   (B[0;7mM-E(B[m Redo[43;113H(B[0;7mM-6(B[m Copy[2d(B[0;1m[36mfrom[39m(B[m flask (B[0;1m[36mimport[39m(B[m Flask[4dapp = Flask(__name__)[6d@app.route((B[0;1m[32m'/'[39m(B[m)[7d(B[0;1m[36mdef[34m home[39m(B[m():[8;5H(B[0;1m[36mreturn[39m(B[m (B[0;1m[32m"Hello from the new Flask app!"[10d[36mif[39m(B[m __name__ == (B[0;1m[32m'__main__'[39m(B[m:[11;5Happ.run(host=(B[0;1m[32m'0.0.0.0'[39m(B[m, port=5000)[2d[?12l[?25h[?25l[?12l[?25h[3d[?25l[?12l[?25h[4d[?25l[?12l[?25h[5d[?25l[?12l[?25h[6d[?25l[?12l[?25h[7d[?25l[?12l[?25h[8d[?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h [?25l[?12l[?25h[7G[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h [?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[41d[K[?12l[?25h[8;15H[?25l[?12l[?25h[17G[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?25h[C[?25l[?12l[?
