@@ -2,23 +2,15 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_HUB_CREDENTIALS = credentials('docker-hub-creds')  // Jenkins creds ID for Docker Hub
-        AWS_CREDENTIALS = credentials('aws-credentials')          // Jenkins creds ID for AWS (access key + secret)
-        DOCKER_IMAGE = "vishnukrajan007/Flaskapp"
-        IMAGE_TAG = "${env.BUILD_NUMBER}"
-        KUBE_NAMESPACE = "default"
+        DOCKER_IMAGE = 'vishnukrajan007/flaskapp'
+        IMAGE_TAG = 'latest'
+        KUBE_NAMESPACE = 'default'  // Change if your namespace is different
     }
 
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/VishnuKRajan007/KubeBridge.git'
-            }
-        }
-
-        stage('Build') {
-            steps {
-                sh 'mvn clean package -DskipTests'
+                git 'https://github.com/yourusername/your-flask-repo.git'
             }
         }
 
@@ -36,15 +28,13 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'aws-credentials', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')]) {
                     sh '''
-                    export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
-                    export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
-                    export AWS_DEFAULT_REGION=ap-south-1
+                        export AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+                        export AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+                        export AWS_DEFAULT_REGION=ap-south-1
 
-                    # Update kubeconfig for EKS
-                    aws eks update-kubeconfig --name vkr-cluster --region ap-south-1
+                        aws eks update-kubeconfig --name vkr-cluster --region ap-south-1
 
-                    # Deploy by setting new image
-                    kubectl set image deployment/Flaskapp Flaskapp =${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
+                        kubectl set image deployment/flaskapp flaskapp=${DOCKER_IMAGE}:${IMAGE_TAG} -n ${KUBE_NAMESPACE}
                     '''
                 }
             }
@@ -57,4 +47,3 @@ pipeline {
         }
     }
 }
-
