@@ -1,10 +1,16 @@
 pipeline {
     agent any
 
+
+    tools {
+        sonarQubeScanner 'SonarScanner' // <-- This should match Global Tool Configuration
+    }
+
     environment {
         DOCKER_IMAGE = 'vishnukrajan007/flaskapp'
         KUBE_NAMESPACE = 'default'
-        SONARQUBE_ENV = 'SonarQube' // This should match the name in Jenkins Global Tool Configuration
+        SONAR_PROJECT_KEY = 'flaskapp'  // Change this to match your SonarQube project
+        SONAR_HOST_URL = 'http://13.235.61.11:9000/'  // Replace with your actual EC2 public IP
     }
 
     stages {
@@ -24,14 +30,16 @@ pipeline {
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv("${SONARQUBE_ENV}") {
-                    sh '''
-                        sonar-scanner \
-                        -Dsonar.projectKey=KubeBridge \
-                        -Dsonar.sources=. \
-                        -Dsonar.host.url=http://13.235.61.11:9000 \
-                        -Dsonar.login=sqp_8380c5e5c3feda072ab3a5dc0567a6edb21484bb
-                    '''
+                withSonarQubeEnv('SonarQube') {  // This must match the name in "Manage Jenkins → Configure System"
+                    withCredentials([string(credentialsId: 'sonar-token', variable: 'SONAR_TOKEN')]) {
+                        sh """
+                            sonar-scanner \
+                            -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                            -Dsonar.sources=. \
+                            -Dsonar.host.url=${SONAR_HOST_URL} \
+                            -Dsonar.login=$SONAR_TOKEN
+                        """
+                    }
                 }
             }
         }
