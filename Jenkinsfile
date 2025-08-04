@@ -35,21 +35,42 @@ pipeline {
             }
         }
 
-        stage('Docker Build & Push') {
-            steps {
-                script {
-                    sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
-                    withCredentials([usernamePassword(
-                        credentialsId: 'docker-hub-creds',
-                        usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR',
-                        passwordVariable: 'DOCKER_HUB_CREDENTIALS_PSW'
-                    )]) {
-                        sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
-                        sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
-                    }
-                }
+
+        stage('Docker Build') {
+    steps {
+        script {
+            sh "docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} ."
+        }
+    }
+}
+
+stage('Trivy Scan') {
+    steps {
+        script {
+            sh '''
+                echo "Running Trivy Scan on Docker image..."
+                trivy image --exit-code 1 --severity CRITICAL,HIGH ${DOCKER_IMAGE}:${IMAGE_TAG}
+            '''
+        }
+    }
+}
+
+stage('Docker Push') {
+    steps {
+        script {
+            withCredentials([usernamePassword(
+                credentialsId: 'docker-hub-creds',
+                usernameVariable: 'DOCKER_HUB_CREDENTIALS_USR',
+                passwordVariable: 'DOCKER_HUB_CREDENTIALS_PSW'
+            )]) {
+                sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
             }
         }
+    }
+}
+
+
 
         stage('Deploy to Kubernetes') {
             steps {
